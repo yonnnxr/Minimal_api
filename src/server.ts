@@ -60,6 +60,6 @@ server.get<{Params: RouteParams}>("/drivers/:id", async(req,res)=> {
         return driver;
     }
 })
-server.listen({ port: 3333 }, () => {
+server.listen({ port: parseInt(process.env.PORT || "3333")}, () => {
     console.log("Server init");
 });
