@@ -1,81 +1,130 @@
-<div align="center">
+# 🏎️ API de Fórmula 1 - Minimal API
 
-  <img src="./.github/assets/blue-saiyan-bg.png" alt="Logo" height="200">
-  <h1 align="center"><strong>NODE BOILERPLATE - BLUE EDITION</strong></h1>
-  <p align="center">
-	  Don't start a new Node project from zero!<br> Use this simple <b>Nodejs</b> boilerplate with pre-configured <b>Typescript</b> in a modern way.
-  </p>
+Uma API REST minimalista construída com **Fastify** e **TypeScript** que fornece informações sobre times e pilotos de Fórmula 1.
 
-</div>
+## 🚀 Características
 
-<br />
+- **Fastify**: Framework web rápido e eficiente para Node.js
+- **TypeScript**: Tipagem estática para maior confiabilidade do código
+- **CORS habilitado**: Acesso cross-origin para integração frontend
+- **Logging automático**: Logs estruturados para debugging
+- **Estrutura modular**: Código organizado em módulos separados
 
-  <!-- Badges -->
-<div align="center">
-  
-  [![TypeScript version][ts-badge]][typescript-5-4]
-  [![Node.js version][nodejs-badge]][nodejs]
+## 📋 Pré-requisitos
 
-</div>
+- Node.js (versão 18 ou superior)
+- npm ou yarn
 
-# 🚀 Technologies
+## 🛠️ Instalação
 
-This code source was developed with the following items:
-
-### 📦 Dependencies
-
-- [typescript][typescript-npm] - Superset for application scale JavaScript development
-- [tsx][tsx-npm] - TypeScript Execute (tsx): Enable Node.js to run TypeScript
-- [tsup][tsup-npm] - Bundle your TypeScript library with no config, powered by esbuild
-- [@types/node][@types/node-npm] - type definitions for node
-
-### 📄 Files
-
-- `.gitignore` - Ignore folders like node_modules
-- `.env` - Enviroment variables
-- `tsconfig.json` - Typescript configure Options
-
-### ⚡ Scripts
-
-- `npm run dist`: Compiles TypeScript files to JavaScript in the dist directory.
-- `npm run start:dev`: Runs the server in development mode with environment variables loaded from the .env file.
-- `npm run start:watch`: Runs the server in development mode with support for automatic reload on file changes.
-- `npm run start:dist`: Compiles the project and runs the compiled version from the dist directory.
-
-# 👨‍💻 How To Use
-
-click in **[Use this template]** OR
-
-To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v20+](https://nodejs.org/en/) + [NPM v10+](https://nodejs.org/en/) installed on your computer. From your command line:
-
+1. Clone o repositório:
 ```bash
-# Clone this repository
-$ git clone https://github.com/felipeAguiarCode/node-blue-boilerplate
-
-# Go into the repository
-$ cd node-blue-boilerplate
-
-# Install dependencies
-$ npm install
+git clone <url-do-repositorio>
+cd Minimal_api
 ```
 
-## Author
+2. Instale as dependências:
+```bash
+npm install
+```
 
-| [<img src="https://avatars3.githubusercontent.com/u/37452836?s=96&v=4"><br><sub>Felipe Aguiar</sub>](https://github.com/felipeAguiarCode) |
-| :---------------------------------------------------------------------------------------------------------------------------------------: |
-|                                            [Linkedin](www.linkedin.com/in/felipe-aguiar-exe/)                                             |
+## 🚀 Executando o Projeto
 
-# Credits
+### Desenvolvimento
+```bash
+# Modo desenvolvimento com hot-reload
+npm run start:watch
 
-icons by [Pino Lamanna][dribble-icon]
+# Modo desenvolvimento simples
+npm run start:dev
+```
 
-[typescript]: https://www.typescriptlang.org/
-[typescript-5-4]: https://www.typescriptlang.org/
-[ts-badge]: https://img.shields.io/badge/TypeScript-5.4-blue.svg
-[nodejs-badge]: https://img.shields.io/badge/Node.js->=%2020.00-blue.svg
-[nodejs]: https://nodejs.org/
-[dribble-icon]: https://dribbble.com/Schakalwal
-[typescript-npm]: https://www.npmjs.com/package/typescript
-[tsx-npm]: https://www.npmjs.com/package/tsx
-[tsup-npm]: https://www.npmjs.com/package/tsup
-[@types/node-npm]: https://www.npmjs.com/package/@types/node
+### Produção
+```bash
+# Build do projeto
+npm run dist
+
+# Executar versão compilada
+npm run start:dist
+```
+
+## 🌐 Endpoints da API
+
+### Times
+- `GET /times` - Lista todos os times de F1
+- `GET /times/:id` - Busca um time específico por ID
+
+### Pilotos
+- `GET /drivers` - Lista todos os pilotos
+- `GET /drivers/:id` - Busca um piloto específico por ID
+
+## 📊 Estrutura de Dados
+
+### Time
+```typescript
+{
+  id: number,
+  name: string,
+  members: Array<{
+    id: number,
+    name: string
+  }>
+}
+```
+
+### Piloto
+```typescript
+{
+  id: number,
+  name: string
+}
+```
+
+## 🏗️ Estrutura do Projeto
+
+```
+src/
+├── data/
+│   ├── drivers.ts      # Dados dos pilotos
+│   └── times.ts        # Dados dos times
+├── server.ts           # Servidor principal
+└── tsconfig.json       # Configuração TypeScript
+```
+
+## 🔧 Tecnologias Utilizadas
+
+- **Fastify**: Framework web para Node.js
+- **TypeScript**: Superset JavaScript com tipagem
+- **CORS**: Middleware para Cross-Origin Resource Sharing
+- **tsx**: Executor TypeScript para desenvolvimento
+- **tsup**: Bundler para produção
+
+## 📝 Scripts Disponíveis
+
+- `npm run start:dev` - Inicia o servidor em modo desenvolvimento
+- `npm run start:watch` - Inicia o servidor com hot-reload
+- `npm run dist` - Compila o projeto para produção
+- `npm run start:dist` - Executa a versão compilada
+
+## 🌍 Configuração
+
+O servidor roda na porta **3333** por padrão. Para alterar, modifique o arquivo `src/server.ts`.
+
+
+## 🤝 Contribuindo
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 👨‍💻 Autor
+
+Desenvolvido com ❤️ para demonstrar uma API minimalista com Fastify e TypeScript.
+
+---
+
+**Status**: 🟢 Funcionando  
+**Versão**: 1.0.0  
+**Última atualização**: Dezembro 2024
