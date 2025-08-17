@@ -20,13 +20,27 @@ server.get("/times", async (req, res) => {
     }
 });
 
+server.get<{Params: RouteParams}>("/times/:id", async(req,res)=> {
+    const id = parseInt(req.params.id)
+
+    const driver = drivers.find(d => d.id == id)
+
+    if (!driver) {
+        res.type("application/json").code(404);
+        return { message: "Nao existe time com esse id"}
+    }else {
+        res.type("application/json").code(200);
+        return driver;
+    }
+})
+
 server.get("/drivers", async (req, res) => {
     try {
         res.type("application/json").code(200);
         return drivers;
     } catch {
         res.type("application/json").code(500);
-        return { message: "Nao foi possivel realizar a solicitacao"}
+        return { message: "Nao existe driver com esse id"}
     }
 })
 interface RouteParams{
